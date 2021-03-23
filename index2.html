@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // первое задание
+
+        //пример 1
+        let a = 1, b = 1, c, d;
+        c = ++a; 
+        alert(c); // ответ: 2
+        // 1) a = a + 1 ---> a = 1 + 1 ---> a === 2
+        // 2) c = a ---> c === 2 
+        // получается 2, потому что инкремент стоит до a, поэтому единица к с прибавляется сразу
+        //пример 2
+        d = b++;
+        alert(d); //ответ: 1
+        // 1) d = b ---> d === 1
+        // 2) b = b + 1 ---> b = 1 + 1 ---> b === 2
+        // инкремент стоит после b, поэтому сначала в переменную d записывается 1
+        //пример 3
+        c = 2 + ++a;
+        alert(c); //ответ: 5
+        // 1) a = a + 1 ---> a = 2 + 1 ---> a === 3
+        // 2) c = 2 + 3 ---> c === 5
+        // мы прибавляем к двойке ++а, то есть ++2, т.к. переменную а мы уже увеличили на 1, то есть мы с присваиваем 2 + 3, что равно 5
+        //пример 4
+        d = 2 + b++;
+        alert(d); //ответ: 4
+        // 1) d = 2 + b ---> d = 2 + 2 ---> d === 4
+        // 2) b = b + 1 ---> b = 2 + 1 ---> b === 3
+        // к b уже прибавилась единица на прошлом шаге, а новая еще не прибавилась, поэтому в b лежит 2, мы к 2 прибавляем 2 и получаем 4
+        alert(a); //3
+        // 1) a === 3
+        // в а лежало 3, 3 и будет
+        alert(b); //3
+        // 1) b === 3 
+        // к b прибавилась единица на прошлом шаге, 2++ это 3
+
+        // второе задание
+
+        a = 2;
+        let x = 1 + (a *= 2);
+        /*
+            1) a = 2
+            2) a = a * 2 ---> a = 2 + 2 ---> a === 4
+            3) x = 1 + a ---> x = 1 + 4 ---> x === 5
+        */
+
+        // третье задание
+
+        let one = +prompt('Введите первое число');
+        let two = +prompt('Введите второе число');
+        one = one.toFixed();
+        two = two.toFixed();
+        if (one > 0 && two > 0) {
+            alert(one + ' - ' + two + ' = ' + (one - two));
+        } else if (one < 0 && two < 0) {
+            alert(one + ' * ' + two + ' = ' + (one * two));
+        } else if ((one > 0 && two < 0) || (one < 0 && two > 0)) {
+            if (one < 0) {
+                alert('('+ one + ')' + ' + ' + two + ' = ' + (parseInt(one) + parseInt(two)));
+            } else if (two < 0) {
+                alert(one + ' + ' + '(' + two + ')' + ' = ' + (parseInt(one) + parseInt(two)));
+            }
+        }
+
+        // четвертое задание
+
+        function summa(a, b) {
+            return a + b;
+        }
+
+        function minus(a, b) {
+            return a - b;
+        }
+
+        function proizv(a, b) {
+            return a * b;
+        }
+
+        function del(a, b) {
+            return a / b;
+        }
+
+        // пятое задание
+
+        function MathOperations(arg1, arg2, operation) {
+            switch (operation) {
+                case '+':
+                    return rez = summa(arg1, arg2);
+                    
+                case '-':
+                    return rez = minus(arg1, arg2);
+                    
+                case '*':
+                    return rez = proizv(arg1, arg2);
+                    
+                case '/':
+                    return rez = del(arg1, arg2);
+                    
+                default:
+                    break;
+            }
+        }
+    
+    // шестое задание
+
+    let num = +prompt('Введите сумму, которую хотите положить на счет');
+    let r = '';
+    let rez = num%10;
+    if ((rez === 0) || ((rez >= 5) && (rez <= 9))) {
+        r = 'рублей';
+    } else if (rez === 1) {
+        r = 'рубль';
+    } else if ((rez >= 2) && (rez <= 4)) {
+        r = 'рубля';
+    }
+
+    alert(`Ваша сумма в ${num} ${r} успешно зачислена.`);
+
+    </script>
+</body>
+</html>
