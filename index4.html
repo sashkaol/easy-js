@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict"
+
+        // первое задание
+
+        function preobr(units, tens, hund) {
+                this.units = units;
+                this.tens = tens;
+                this.hundreds = hund;
+            }
+
+        let a = +prompt('Введите целое число от 0 до 999');
+        if ((a < 0) || (a > 999)) {
+            console.log(`Число ${a} вышло за границы диапазона`);
+            console.log(Object);
+        } else if (Number.isInteger(a) == false) {
+            console.log(`Число ${a} не является целым`);
+            console.log(Object);
+        } else {
+            let units = a%10;
+            let tens = (a%100 - units)/10;
+            let hund = parseInt((a%1000)/100);
+            console.log(units);
+            console.log(tens);
+            console.log(hund);
+            let help = new preobr(units, tens, hund);
+            console.log(help);
+        }
+
+        // задание 1.1
+
+        // стиль es5
+
+        function Products(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        Products.prototype.make25PercentDiscount = function () {
+            this.price = this.price * 0.75;
+        }
+
+        let prod = new Products('meat', 100);
+        prod.make25PercentDiscount();
+        console.log(prod);
+
+        // стиль es6
+
+        class Product {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+
+            make25PercentDiscount() {
+                this.price = this.price * 0.75;
+            }
+        }
+
+        prod = new Product('salt', 900);
+        prod.make25PercentDiscount();
+        console.log(prod);
+
+        // задание 1.2
+
+        // стиль es5, a)
+
+        function Post(author, text, date) {
+            this.author = author;
+            this.text = text;
+            this.date = date;
+        }
+
+        Post.prototype.edit = function (text) {
+            text = prompt('Введите текст');
+            this.text = text;
+        }
+
+        let myPost = new Post('Саша', '', '31.03.2021');
+        myPost.edit();
+
+        console.log(myPost);
+
+        // ES5, b)
+
+        function AttachedPost(author, text, date, highlighted) {
+            Post.call(this, author, text, date);
+            this.highlighted = highlighted;
+        }
+
+        AttachedPost.prototype = Object.create(Post.prototype);
+        AttachedPost.prototype.constructor = AttachedPost;
+    
+        AttachedPost.prototype.makeTextHighlighted = function () {
+            this.highlighted = true;
+        }
+
+        let post3 = new AttachedPost('Sasha', '', '31.03.0392', false);
+        post3.edit();
+        post3.makeTextHighlighted();
+        console.log(post3);
+
+
+        // стиль es6, a)
+
+        class Posts {
+            constructor(author, text, date) {
+                this.author = author;
+                this.text = text;
+                this.date = date;
+            }
+
+            edits() {
+                let text = prompt('Введи текст');
+                this.text = text;
+            }
+        }
+
+        let post2 = new Posts('Саня', '', '31.04.2021');
+        post2.edits();
+        console.log(post2);
+
+        // ES6, b)
+
+        class AttachedPosts extends Posts {
+            constructor(author, text, date, highlighted) {
+                super(author, text, date);
+                this.highlighted = highlighted;
+            }
+
+            makeTextHighlighteds() {
+                this.highlighted = true;
+            }
+        }
+
+        let post4 = new AttachedPosts('Sasha', '', '31.02.2020', '');
+        post4.edits();
+        post4.makeTextHighlighteds();
+        console.log(post4);
+
+    </script>
+</body>
+</html>
